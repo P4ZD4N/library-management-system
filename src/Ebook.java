@@ -38,17 +38,25 @@ abstract class Ebook implements MediaItem {
 
     @Override
     public void borrowBook() {
-        System.out.println("Book borrowed");
-        availability = false;
-        listOfAvailableBooks.remove(title);
-        listOfBorrowedBooks.add(title);
+        if (availability == true) {
+            System.out.println("Book borrowed");
+            availability = false;
+            listOfAvailableBooks.remove(title);
+            listOfBorrowedBooks.add(title);
+        } else {
+            System.out.println("Book is actually unavailable");
+        }
     }
 
     @Override
     public void returnBook() {
-        System.out.println("Book returned");
-        availability = true;
-        listOfAvailableBooks.add(title);
-        listOfBorrowedBooks.remove(title);
+        if (availability == false) {
+            System.out.println("Book returned");
+            availability = true;
+            listOfBorrowedBooks.remove(title);
+            listOfAvailableBooks.add(title);
+        } else {
+            System.out.println("Book is actually not borrowed, so you can't return it");
+        }
     }
 }
