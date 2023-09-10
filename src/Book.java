@@ -49,6 +49,6 @@ abstract class Book implements MediaItem {
         System.out.println("Book returned");
         availability = true;
         listOfAvailableBooks.add(title);
-        listOfBorrowedBooks.add(title);
+        listOfBorrowedBooks.remove(title);
     }
 }
