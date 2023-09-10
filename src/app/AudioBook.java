@@ -1,7 +1,9 @@
+package app;
+
 import java.util.List;
 
-public class PhysicalBook extends Book {
-    public PhysicalBook(String title, String author, int publicationDate) {
+public class AudioBook extends Ebook {
+    public AudioBook(String title, String author, int publicationDate) {
         super(title, author, publicationDate);
         listOfAvailableBooks.add(title);
     }

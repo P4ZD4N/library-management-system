@@ -1,3 +1,5 @@
+package app;
+
 public interface MediaItem {
     String getTitle();
     String getAuthor();

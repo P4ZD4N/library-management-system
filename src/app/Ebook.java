@@ -1,7 +1,9 @@
+package app;
+
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Book implements MediaItem {
+abstract class Ebook implements MediaItem {
     private String title;
     private String author;
     private int publicationDate;
@@ -9,7 +11,7 @@ abstract class Book implements MediaItem {
     protected static List<String> listOfAvailableBooks = new ArrayList<>();
     protected static List<String> listOfBorrowedBooks = new ArrayList<>();
 
-    protected Book(String title, String author, int publicationDate) {
+    protected Ebook(String title, String author, int publicationDate) {
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
