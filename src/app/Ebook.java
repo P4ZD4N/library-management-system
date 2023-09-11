@@ -8,6 +8,7 @@ abstract class Ebook implements MediaItem {
     private String author;
     private int publicationDate;
     private boolean availability;
+    protected static List<List<Object>> listOfAllBooks = new ArrayList<>();
     protected static List<String> listOfAvailableBooks = new ArrayList<>();
     protected static List<String> listOfBorrowedBooks = new ArrayList<>();
 
@@ -16,6 +17,13 @@ abstract class Ebook implements MediaItem {
         this.author = author;
         this.publicationDate = publicationDate;
         this.availability = true;
+
+        List<Object> bookProperties = new ArrayList<>();
+        bookProperties.add(title);
+        bookProperties.add(author);
+        bookProperties.add(publicationDate);
+
+        listOfAllBooks.add(bookProperties);
     }
 
     @Override
