@@ -19,8 +19,8 @@ Library management system app, which helped me practise my OOP skills in Java. I
 
 ### MediaItem interface
 - <b>getTitle()</b> - Method, which returns title of book (String).
-- <b>getAuthor</b> - Method, which returns author of book (String).
-- <b>getPublicationDate</b> - Method, which returns publication date of book (int).
+- <b>getAuthor()</b> - Method, which returns author of book (String).
+- <b>getPublicationDate()</b> - Method, which returns publication date of book (int).
 - <b>getAvailability()</b> - Method, which returns availability of book (boolean).
 - <b>borrowBook()</b> - Method, which causes borrowing book. When you use this method book is moving from list 
 <b>listOfAvailableBooks</b> to list <b>listOfBorrowedBooks</b> 
