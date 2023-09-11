@@ -27,13 +27,13 @@ public class PhysicalBook extends Book {
         return booksFilteredByTitleOrAuthor;
     }
 
-    public static List<Object> searchBookBy(int productionDate) {
-        List<Object> booksFilteredByProductionDate = new ArrayList<>();
+    public static List<Object> searchBookBy(int publicationDate) {
+        List<Object> booksFilteredByPublicationDate = new ArrayList<>();
         for (List<Object> book: listOfAllBooks) {
-            if (book.contains(productionDate)) {
-                booksFilteredByProductionDate.add(book);
+            if (book.contains(publicationDate)) {
+                booksFilteredByPublicationDate.add(book);
             }
         }
-        return booksFilteredByProductionDate;
+        return booksFilteredByPublicationDate;
     }
 }
