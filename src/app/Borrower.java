@@ -1,6 +1,8 @@
 package app;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Borrower {
     private String firstName;
@@ -8,6 +10,7 @@ public class Borrower {
     private LocalDate dateOfBirth;
     private String address;
     private String telephone;
+    private static List<Object> listOfBorrowers = new ArrayList<>();
 
     public Borrower(String firstName, String lastName, LocalDate dateOfBirth, String address, String telephone) {
         this.firstName = firstName;
@@ -15,6 +18,8 @@ public class Borrower {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.telephone = telephone;
+
+        listOfBorrowers.add(List.of(firstName, lastName, dateOfBirth, address, telephone));
     }
 
     public String getFirstName() {
@@ -53,7 +58,7 @@ public class Borrower {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public static List<Object> getListOfBorrowers() {
+        return listOfBorrowers;
     }
 }
