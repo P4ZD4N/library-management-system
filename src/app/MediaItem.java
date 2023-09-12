@@ -5,6 +5,6 @@ public interface MediaItem {
     String getAuthor();
     int getPublicationDate();
     boolean getAvailability();
-    void borrowBook();
+    void borrowBook(Borrower borrower);
     void returnBook();
 }
