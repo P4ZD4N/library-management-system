@@ -13,7 +13,7 @@ public class PhysicalBook extends Book {
         return listOfAvailableBooks;
     }
 
-    public static List<String> getListOfBorrowedBooks() {
+    public static List<Object> getListOfBorrowedBooks() {
         return listOfBorrowedBooks;
     }
 

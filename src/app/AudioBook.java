@@ -13,7 +13,7 @@ public class AudioBook extends Ebook {
         return listOfAvailableBooks;
     }
 
-    public static List<String> getListOfBorrowedBooks() {
+    public static List<Object> getListOfBorrowedBooks() {
         return listOfBorrowedBooks;
     }
 
