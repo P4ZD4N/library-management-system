@@ -47,7 +47,7 @@ abstract class Ebook implements MediaItem {
     }
 
     @Override
-    public void borrowBook() {
+    public void borrowBook(Borrower borrower) {
         if (availability == true) {
             System.out.println("Book borrowed");
             availability = false;
