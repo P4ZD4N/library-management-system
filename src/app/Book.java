@@ -10,7 +10,7 @@ abstract class Book implements MediaItem {
     private boolean availability;
     protected static List<List<Object>> listOfAllBooks = new ArrayList<>();
     protected static List<String> listOfAvailableBooks = new ArrayList<>();
-    protected static List<String> listOfBorrowedBooks = new ArrayList<>();
+    protected static List<Object> listOfBorrowedBooks = new ArrayList<>();
 
     protected Book(String title, String author, int publicationDate) {
         this.title = title;
@@ -52,21 +52,31 @@ abstract class Book implements MediaItem {
             System.out.println("Book borrowed");
             availability = false;
             listOfAvailableBooks.remove(title);
-            listOfBorrowedBooks.add(title);
+            listOfBorrowedBooks.add(List.of(title, createBorrowerDataList(borrower)));
         } else {
             System.out.println("Book is actually unavailable");
         }
     }
 
     @Override
-    public void returnBook() {
+    public void returnBook(Borrower borrower) {
         if (availability == false) {
             System.out.println("Book returned");
             availability = true;
-            listOfBorrowedBooks.remove(title);
+            listOfBorrowedBooks.remove(List.of(title, createBorrowerDataList(borrower)));
             listOfAvailableBooks.add(title);
         } else {
             System.out.println("Book is actually not borrowed, so you can't return it");
         }
+    }
+
+    private List<Object> createBorrowerDataList(Borrower borrower) {
+        return List.of(
+                borrower.getFirstName(),
+                borrower.getLastName(),
+                borrower.getDateOfBirth(),
+                borrower.getAddress(),
+                borrower.getTelephone()
+        );
     }
 }
