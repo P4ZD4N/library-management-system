@@ -12,7 +12,7 @@ Library management system app, which helped me practise my OOP skills in Java. I
 - Borrowing and returning books. When book is borrowed or returned then availability of this book is updated.
 - Displaying list of available books and borrowed books.
 - Searching books by author, title and publication date.
-- Storing informations about borrowers, including contact data. <b>[IN PLANS]</b>
+- Storing informations about borrowers, including contact data.
 - Creating statistics about e.g. books or authors popularity. <b>[IN PLANS]</b>
 
 # Description of methods
@@ -23,9 +23,14 @@ Library management system app, which helped me practise my OOP skills in Java. I
 - <b>getPublicationDate()</b> - Method, which returns publication date of book (int).
 - <b>getAvailability()</b> - Method, which returns availability of book (boolean).
 - <b>borrowBook()</b> - Method, which causes borrowing book. When you use this method book is moving from list 
-<b>listOfAvailableBooks</b> to list <b>listOfBorrowedBooks</b> 
+<b>listOfAvailableBooks</b> to list <b>listOfBorrowedBooks</b>. Method require object of Borrower class as an argument
+to store contact data of borrower in listOfBorrowedBooks.
 - <b>returnBook()</b> - Method which causes returning book. When you use this method book is moving from list
-<b>listOfBorrowedBooks</b> to list <b>listOfAvailableBooks</b> 
+<b>listOfBorrowedBooks</b> to list <b>listOfAvailableBooks</b>. Method require object of Borrower class as an argument
+  to delete contact data of borrower from listOfBorrowedBooks.
+
+### Borrower class
+- Getters and setters, which allows getting value of private variables storing data and setting new values.
 
 ### Book abstract class and Ebook abstract class
 - Both classes implements <b>MediaItem</b> interface, so they inherit all methods from it.
