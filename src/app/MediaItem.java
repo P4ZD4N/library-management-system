@@ -6,5 +6,5 @@ public interface MediaItem {
     int getPublicationDate();
     boolean getAvailability();
     void borrowBook(Borrower borrower);
-    void returnBook();
+    void returnBook(Borrower borrower);
 }
