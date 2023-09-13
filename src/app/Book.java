@@ -60,13 +60,27 @@ abstract class Book implements MediaItem {
 
     @Override
     public void returnBook(Borrower borrower) {
-        if (availability == false) {
-            System.out.println("Book returned");
-            availability = true;
-            listOfBorrowedBooks.remove(List.of(title, createBorrowerDataList(borrower)));
-            listOfAvailableBooks.add(title);
-        } else {
-            System.out.println("Book is actually not borrowed, so you can't return it");
+        try {
+            if (
+                    listOfBorrowedBooks.contains(
+                            listOfBorrowedBooks.get(
+                                    listOfBorrowedBooks.indexOf(
+                                            List.of(title, createBorrowerDataList(borrower))
+                                    )
+                            )
+                    )
+            ) {
+                if (availability == false) {
+                    System.out.println("Book returned");
+                    availability = true;
+                    listOfBorrowedBooks.remove(List.of(title, createBorrowerDataList(borrower)));
+                    listOfAvailableBooks.add(title);
+                } else {
+                    System.out.println("Book is actually not borrowed, so you can't return it");
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("This borrower didn't borrowed that book");
         }
     }
 
