@@ -18,12 +18,7 @@ abstract class Book implements MediaItem {
         this.publicationDate = publicationDate;
         this.availability = true;
 
-        List<Object> bookProperties = new ArrayList<>();
-        bookProperties.add(title);
-        bookProperties.add(author);
-        bookProperties.add(publicationDate);
-
-        listOfAllBooks.add(bookProperties);
+        listOfAllBooks.add(List.of(title, author, publicationDate));
     }
 
     @Override
