@@ -34,6 +34,10 @@ to delete contact data of borrower from listOfBorrowedBooks.
 - <b>getListOfBorrowers()</b> - Static method, which returns <b>listOfBorrowers</b> list. This list contains other lists,
 that contains contact data of borrowers.
 
+### Statistics class
+- <b>getMostPopularAuthor()</b> - Static method, which returns list of most popular authors in library (from both physical books
+and audiobooks).
+
 ### Book abstract class and Ebook abstract class
 - Both classes implements <b>MediaItem</b> interface, so they inherit all methods from it.
 
