@@ -17,6 +17,10 @@ public class PhysicalBook extends Book {
         return listOfBorrowedBooks;
     }
 
+    public static List<List<Object>> getListOfAllBooks() {
+        return  listOfAllBooks;
+    }
+
     public static List<Object> searchBookBy(String titleOrAuthor) {
         List<Object> booksFilteredByTitleOrAuthor = new ArrayList<>();
         for (List<Object> book: listOfAllBooks) {
