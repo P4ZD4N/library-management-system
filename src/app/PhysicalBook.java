@@ -6,10 +6,10 @@ import java.util.List;
 public class PhysicalBook extends Book {
     public PhysicalBook(String title, String author, int publicationDate) {
         super(title, author, publicationDate);
-        listOfAvailableBooks.add(title);
+        listOfAvailableBooks.add(List.of(title, author, publicationDate));
     }
 
-    public static List<String> getListOfAvailableBooks() {
+    public static List<Object> getListOfAvailableBooks() {
         return listOfAvailableBooks;
     }
 
