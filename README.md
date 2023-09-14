@@ -26,8 +26,8 @@ Library management system app, which helped me practise my OOP skills in Java. I
 <b>listOfAvailableBooks</b> to list <b>listOfBorrowedBooks</b>. Method require object of Borrower class as an argument
 to store contact data of borrower in listOfBorrowedBooks.
 - <b>returnBook(Borrower borrower)</b> - Method which causes returning book. When you use this method book is moving from list
-<b>listOfBorrowedBooks</b> to list <b>listOfAvailableBooks</b>. Method require object of Borrower class as an argument
-  to delete contact data of borrower from listOfBorrowedBooks.
+<b>listOfBorrowedBooks</b> to list <b>listOfAvailableBooks</b>. Method require object of Borrower class as an argument 
+to delete contact data of borrower from listOfBorrowedBooks.
 
 ### Borrower class
 - Getters and setters, which allows getting value of private variables storing data and setting new values.
@@ -42,5 +42,6 @@ that contains contact data of borrowers.
 - Class AudioBook extends <b>Ebook</b> abstract class, so it inherit all non-private methods and variables.
 - <b>getListOfAvailableBooks()</b> - Static method, which returns <b>listOfAvailableBooks</b> list (List).
 - <b>getListOfBorrowedBooks()</b> - Static method, which returns <b>listOfBorrowedBooks</b> list (List).
+- <b>getListOfAllBooks()</b> - Static method, which returns <b>listOfAllBooks</b> list (List).
 - <b>searchBookBy(String arg)</b> - Static method, which returns list of books filtered by title or author (List).
 - <b>searchBookBy(int arg)</b> - Static method, which returns list of books filtered by publication date (List).
