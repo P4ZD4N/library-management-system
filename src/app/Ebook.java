@@ -8,8 +8,9 @@ abstract class Ebook implements MediaItem {
     private String author;
     private int publicationDate;
     private boolean availability;
+    private List<Object> bookData;
     protected static List<List<Object>> listOfAllBooks = new ArrayList<>();
-    protected static List<String> listOfAvailableBooks = new ArrayList<>();
+    protected static List<Object> listOfAvailableBooks = new ArrayList<>();
     protected static List<Object> listOfBorrowedBooks = new ArrayList<>();
 
     protected Ebook(String title, String author, int publicationDate) {
@@ -18,7 +19,9 @@ abstract class Ebook implements MediaItem {
         this.publicationDate = publicationDate;
         this.availability = true;
 
-        listOfAllBooks.add(List.of(title, author, publicationDate));
+        bookData = List.of(title, author, publicationDate);
+
+        listOfAllBooks.add(bookData);
     }
 
     @Override
@@ -46,8 +49,8 @@ abstract class Ebook implements MediaItem {
         if (availability == true) {
             System.out.println("Book borrowed");
             availability = false;
-            listOfAvailableBooks.remove(title);
-            listOfBorrowedBooks.add(List.of(title, createBorrowerDataList(borrower)));
+            listOfAvailableBooks.remove(bookData);
+            listOfBorrowedBooks.add(List.of(bookData, createBorrowerDataList(borrower)));
         } else {
             System.out.println("Book is actually unavailable");
         }
@@ -60,7 +63,7 @@ abstract class Ebook implements MediaItem {
                     listOfBorrowedBooks.contains(
                             listOfBorrowedBooks.get(
                                     listOfBorrowedBooks.indexOf(
-                                            List.of(title, createBorrowerDataList(borrower))
+                                            List.of(bookData, createBorrowerDataList(borrower))
                                     )
                             )
                     )
@@ -68,8 +71,8 @@ abstract class Ebook implements MediaItem {
                 if (availability == false) {
                     System.out.println("Book returned");
                     availability = true;
-                    listOfBorrowedBooks.remove(List.of(title, createBorrowerDataList(borrower)));
-                    listOfAvailableBooks.add(title);
+                    listOfBorrowedBooks.remove(List.of(bookData, createBorrowerDataList(borrower)));
+                    listOfAvailableBooks.add(bookData);
                 } else {
                     System.out.println("Book is actually not borrowed, so you can't return it");
                 }
