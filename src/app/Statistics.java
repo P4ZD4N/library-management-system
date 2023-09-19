@@ -32,8 +32,17 @@ public class Statistics {
         List<String> mostPopularAuthorsOfPhysicalBooks = createListOfMostPopularAuthors(authorsAndNumberOfTheirBooksInLibrary);
         return mostPopularAuthorsOfPhysicalBooks;
     }
-
-//    public static String getMostPopularAuthorAudioBooks();
+    public static List<String> getMostPopularAuthorAudioBooks() {
+        Set<String> audioBooksAuthors = listOfAudioBooks
+                .stream()
+                .map(list -> Objects.toString(list.get(1)))
+                .collect(Collectors.toSet());
+        Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary = createMapOfAuthorsAndNumberOfTheirBooksInLibrary(
+                listOfAudioBooks, audioBooksAuthors
+        );
+        List<String> mostPopularAuthorsOfAudioBooks = createListOfMostPopularAuthors(authorsAndNumberOfTheirBooksInLibrary);
+        return mostPopularAuthorsOfAudioBooks;
+    }
 //    public static String getMostPopularPublicationDate();
 //    public static String getMostPopularPublicationDatePhysicalBooks();
 //    public static String getMostPopularPublicationDateAudioBooks();
