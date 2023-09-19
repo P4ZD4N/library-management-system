@@ -43,7 +43,17 @@ public class Statistics {
         List<String> mostPopularAuthorsOfAudioBooks = createListOfMostPopularAuthors(authorsAndNumberOfTheirBooksInLibrary);
         return mostPopularAuthorsOfAudioBooks;
     }
-//    public static String getMostPopularPublicationDate();
+    public static List<Integer> getMostPopularPublicationDates() {
+        Set<Integer> allPublicationDates = listOfAllBooksBothPhysicalAndAudio
+                .stream()
+                .map(list -> Integer.parseInt(Objects.toString(list.get(2))))
+                .collect(Collectors.toSet());
+        Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences = createMapOfDatesOfPublicationAndNumberOfOccurrences(
+                listOfAllBooksBothPhysicalAndAudio, allPublicationDates
+        );
+        List<Integer> mostPopularPublicationDates = createListOfMostPopularPublicationDates(datesOfPublicationAndNumberOfOccurrences);
+        return mostPopularPublicationDates;
+    }
 //    public static String getMostPopularPublicationDatePhysicalBooks();
 //    public static String getMostPopularPublicationDateAudioBooks();
 
@@ -80,5 +90,33 @@ public class Statistics {
             }
         }
         return mostPopularAuthors;
+    }
+    private static Map<Integer, Integer> createMapOfDatesOfPublicationAndNumberOfOccurrences(
+            List<List<Object>> listOfBooks, Set<Integer> publicationDates
+    ) {
+        Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences = new HashMap<>();
+        for (Integer publicationDate: publicationDates) {
+            int booksWithThisPublicationDate = 0;
+            for (List<Object> list: listOfBooks) {
+                if (list.contains(publicationDate)) {
+                    booksWithThisPublicationDate++;
+                }
+            }
+            datesOfPublicationAndNumberOfOccurrences.put(publicationDate, Integer.valueOf(booksWithThisPublicationDate));
+        }
+        return datesOfPublicationAndNumberOfOccurrences;
+    }
+    private static List<Integer> createListOfMostPopularPublicationDates(
+            Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences
+    ) {
+        List<Integer> mostPopularPublicationDates = new ArrayList<>();
+        for (Integer publicationDate: datesOfPublicationAndNumberOfOccurrences.keySet()) {
+            if (datesOfPublicationAndNumberOfOccurrences.get(publicationDate) == Collections.max(
+                    datesOfPublicationAndNumberOfOccurrences.values()
+            )) {
+                mostPopularPublicationDates.add(publicationDate);
+            }
+        }
+        return mostPopularPublicationDates;
     }
 }
