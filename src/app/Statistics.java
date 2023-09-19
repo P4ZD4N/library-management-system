@@ -54,9 +54,28 @@ public class Statistics {
         List<Integer> mostPopularPublicationDates = createListOfMostPopularPublicationDates(datesOfPublicationAndNumberOfOccurrences);
         return mostPopularPublicationDates;
     }
-//    public static String getMostPopularPublicationDatePhysicalBooks();
-//    public static String getMostPopularPublicationDateAudioBooks();
-
+    public static List<Integer> getMostPopularPublicationDatesPhysicalBooks() {
+        Set<Integer> physicalBooksPublicationDates = listOfPhysicalBooks
+                .stream()
+                .map(list -> Integer.parseInt(Objects.toString(list.get(2))))
+                .collect(Collectors.toSet());
+        Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences = createMapOfDatesOfPublicationAndNumberOfOccurrences(
+                listOfPhysicalBooks, physicalBooksPublicationDates
+        );
+        List<Integer> mostPopularPublicationDatesOfPhysicalBooks = createListOfMostPopularPublicationDates(datesOfPublicationAndNumberOfOccurrences);
+        return mostPopularPublicationDatesOfPhysicalBooks;
+    }
+    public static List<Integer> getMostPopularPublicationDatesAudioBooks() {
+        Set<Integer> audioBooksPublicationDates = listOfAudioBooks
+                .stream()
+                .map(list -> Integer.parseInt(Objects.toString(list.get(2))))
+                .collect(Collectors.toSet());
+        Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences = createMapOfDatesOfPublicationAndNumberOfOccurrences(
+                listOfAudioBooks, audioBooksPublicationDates
+        );
+        List<Integer> mostPopularPublicationDatesOfAudioBooks = createListOfMostPopularPublicationDates(datesOfPublicationAndNumberOfOccurrences);
+        return mostPopularPublicationDatesOfAudioBooks;
+    }
     private static List<List<Object>> createListOfAllBooks(
             List<List<Object>> listOfPhysicalBooks, List<List<Object>> listOfAudioBooks
     ) {
