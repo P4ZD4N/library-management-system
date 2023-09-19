@@ -43,6 +43,10 @@ physical books (List).
   audio books (List).
 - <b>getMostPopularPublicationDates()</b> - Static method, which returns list of publication dates that most
 often occurs in books in the library (from both physical books and audiobooks) (List).
+- <b>getMostPopularPublicationDatesPhysicalBooks()</b> - Static method, which returns list of publication dates that most
+  often occurs in physical books in the library (List).
+- <b>getMostPopularPublicationDatesAudioBooks()</b> - Static method, which returns list of publication dates that most
+  often occurs in audio books in the library (List).
 
 ### Book abstract class and Ebook abstract class
 - Both classes implements <b>MediaItem</b> interface, so they inherit all methods from it.
