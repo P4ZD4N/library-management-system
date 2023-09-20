@@ -13,7 +13,7 @@ Library management system app, which helped me practise my OOP skills in Java. I
 - Displaying list of available books and borrowed books.
 - Searching books by author, title and publication date.
 - Storing informations about borrowers, including contact data.
-- Creating statistics about e.g. books or authors popularity. <b>[IN PLANS]</b>
+- Creating statistics.
 
 # Description of methods
 
