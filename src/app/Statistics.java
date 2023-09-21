@@ -28,7 +28,6 @@ public class Statistics {
     public static List<Integer> getMostPopularPublicationDatesAudioBooks() {
         return createListContainingMostPopularPublicationDates(listOfAudioBooks);
     }
-
     private static List<String> createListContainingMostPopularAuthors(List<List<Object>> listOfBooks) {
         Set<String> authors = listOfBooks
                 .stream()
@@ -70,7 +69,7 @@ public class Statistics {
                     booksOfThisAuthor++;
                 }
             }
-            authorsAndNumberOfTheirBooksInLibrary.put(author, Integer.valueOf(booksOfThisAuthor));
+            authorsAndNumberOfTheirBooksInLibrary.put(author, booksOfThisAuthor);
         }
         return authorsAndNumberOfTheirBooksInLibrary;
     }
@@ -96,7 +95,7 @@ public class Statistics {
                     booksWithThisPublicationDate++;
                 }
             }
-            datesOfPublicationAndNumberOfOccurrences.put(publicationDate, Integer.valueOf(booksWithThisPublicationDate));
+            datesOfPublicationAndNumberOfOccurrences.put(publicationDate, booksWithThisPublicationDate);
         }
         return datesOfPublicationAndNumberOfOccurrences;
     }
