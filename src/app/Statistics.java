@@ -72,15 +72,15 @@ public class Statistics {
         return authorsAndNumberOfTheirBooksInLibrary;
     }
     private static List<String> createListOfAuthorsWithMostBooks(Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary) {
-        List<String> mostPopularAuthors = new ArrayList<>();
+        List<String> authorsWithMostBooks = new ArrayList<>();
         for (String author: authorsAndNumberOfTheirBooksInLibrary.keySet()) {
             if (authorsAndNumberOfTheirBooksInLibrary.get(author).equals(Collections.max(
                     authorsAndNumberOfTheirBooksInLibrary.values()
             ))) {
-                mostPopularAuthors.add(author);
+                authorsWithMostBooks.add(author);
             }
         }
-        return mostPopularAuthors;
+        return authorsWithMostBooks;
     }
     private static Map<Integer, Integer> createMapOfDatesOfPublicationAndNumberOfOccurrences(
             List<List<Object>> listOfBooks, Set<Integer> publicationDates
@@ -100,14 +100,14 @@ public class Statistics {
     private static List<Integer> createListOfPublicationDatesMostAppearsInBooks(
             Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences
     ) {
-        List<Integer> mostPopularPublicationDates = new ArrayList<>();
+        List<Integer> publicationDatesMostAppearsInBooks = new ArrayList<>();
         for (Integer publicationDate: datesOfPublicationAndNumberOfOccurrences.keySet()) {
             if (datesOfPublicationAndNumberOfOccurrences.get(publicationDate).equals(Collections.max(
                     datesOfPublicationAndNumberOfOccurrences.values()
             ))) {
-                mostPopularPublicationDates.add(publicationDate);
+                publicationDatesMostAppearsInBooks.add(publicationDate);
             }
         }
-        return mostPopularPublicationDates;
+        return publicationDatesMostAppearsInBooks;
     }
 }
