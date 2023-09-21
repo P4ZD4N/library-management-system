@@ -10,25 +10,25 @@ public class Statistics {
             listOfPhysicalBooks, listOfAudioBooks
     );
 
-    public static List<String> getMostPopularAuthor() {
-        return createListContainingMostPopularAuthors(listOfAllBooksBothPhysicalAndAudio);
+    public static List<String> getAuthorsWithMostAllBooks() {
+        return createListContainingAuthorsWithMostBooks(listOfAllBooksBothPhysicalAndAudio);
     }
-    public static List<String> getMostPopularAuthorPhysicalBooks() {
-        return createListContainingMostPopularAuthors(listOfPhysicalBooks);
+    public static List<String> getAuthorsWithMostPhysicalBooks() {
+        return createListContainingAuthorsWithMostBooks(listOfPhysicalBooks);
     }
-    public static List<String> getMostPopularAuthorAudioBooks() {
-        return createListContainingMostPopularAuthors(listOfAudioBooks);
+    public static List<String> getAuthorsWithMostAudioBooks() {
+        return createListContainingAuthorsWithMostBooks(listOfAudioBooks);
     }
-    public static List<Integer> getMostPopularPublicationDates() {
-        return createListContainingMostPopularPublicationDates(listOfAllBooksBothPhysicalAndAudio);
+    public static List<Integer> getPublicationDatesMostAppearsAllBooks() {
+        return createListContainingPublicationDatesMostAppearsInBooks(listOfAllBooksBothPhysicalAndAudio);
     }
-    public static List<Integer> getMostPopularPublicationDatesPhysicalBooks() {
-        return createListContainingMostPopularPublicationDates(listOfPhysicalBooks);
+    public static List<Integer> getPublicationDatesMostAppearsPhysicalBooks() {
+        return createListContainingPublicationDatesMostAppearsInBooks(listOfPhysicalBooks);
     }
-    public static List<Integer> getMostPopularPublicationDatesAudioBooks() {
-        return createListContainingMostPopularPublicationDates(listOfAudioBooks);
+    public static List<Integer> getPublicationDatesMostAppearsAudioBooks() {
+        return createListContainingPublicationDatesMostAppearsInBooks(listOfAudioBooks);
     }
-    private static List<String> createListContainingMostPopularAuthors(List<List<Object>> listOfBooks) {
+    private static List<String> createListContainingAuthorsWithMostBooks(List<List<Object>> listOfBooks) {
         Set<String> authors = listOfBooks
                 .stream()
                 .map(bookProperties -> Objects.toString(bookProperties.get(1)))
@@ -36,9 +36,9 @@ public class Statistics {
         Map<String, Integer> authorsWithOccurrences = createMapOfAuthorsAndNumberOfTheirBooksInLibrary(
                 listOfBooks, authors
         );
-        return createListOfMostPopularAuthors(authorsWithOccurrences);
+        return createListOfAuthorsWithMostBooks(authorsWithOccurrences);
     }
-    private static List<Integer> createListContainingMostPopularPublicationDates(List<List<Object>> listOfBooks) {
+    private static List<Integer> createListContainingPublicationDatesMostAppearsInBooks(List<List<Object>> listOfBooks) {
         Set<Integer> publicationDates = listOfBooks
                 .stream()
                 .map(bookProperties -> Integer.parseInt(Objects.toString(bookProperties.get(2))))
@@ -46,7 +46,7 @@ public class Statistics {
         Map<Integer, Integer> datesOfPublicationWithOccurrences = createMapOfDatesOfPublicationAndNumberOfOccurrences(
                 listOfBooks, publicationDates
         );
-        return createListOfMostPopularPublicationDates(datesOfPublicationWithOccurrences);
+        return createListOfPublicationDatesMostAppearsInBooks(datesOfPublicationWithOccurrences);
     }
     private static List<List<Object>> createListOfAllBooks(
             List<List<Object>> listOfPhysicalBooks, List<List<Object>> listOfAudioBooks
@@ -71,7 +71,7 @@ public class Statistics {
         }
         return authorsAndNumberOfTheirBooksInLibrary;
     }
-    private static List<String> createListOfMostPopularAuthors(Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary) {
+    private static List<String> createListOfAuthorsWithMostBooks(Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary) {
         List<String> mostPopularAuthors = new ArrayList<>();
         for (String author: authorsAndNumberOfTheirBooksInLibrary.keySet()) {
             if (authorsAndNumberOfTheirBooksInLibrary.get(author).equals(Collections.max(
@@ -97,7 +97,7 @@ public class Statistics {
         }
         return datesOfPublicationAndNumberOfOccurrences;
     }
-    private static List<Integer> createListOfMostPopularPublicationDates(
+    private static List<Integer> createListOfPublicationDatesMostAppearsInBooks(
             Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences
     ) {
         List<Integer> mostPopularPublicationDates = new ArrayList<>();
