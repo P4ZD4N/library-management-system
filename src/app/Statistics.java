@@ -36,8 +36,7 @@ public class Statistics {
         Map<String, Integer> authorsWithOccurrences = createMapOfAuthorsAndNumberOfTheirBooksInLibrary(
                 listOfBooks, authors
         );
-        List<String> mostPopularAuthors = createListOfMostPopularAuthors(authorsWithOccurrences);
-        return mostPopularAuthors;
+        return createListOfMostPopularAuthors(authorsWithOccurrences);
     }
     private static List<Integer> createListContainingMostPopularPublicationDates(List<List<Object>> listOfBooks) {
         Set<Integer> publicationDates = listOfBooks
@@ -47,8 +46,7 @@ public class Statistics {
         Map<Integer, Integer> datesOfPublicationWithOccurrences = createMapOfDatesOfPublicationAndNumberOfOccurrences(
                 listOfBooks, publicationDates
         );
-        List<Integer> mostPopularPublicationDates = createListOfMostPopularPublicationDates(datesOfPublicationWithOccurrences);
-        return mostPopularPublicationDates;
+        return createListOfMostPopularPublicationDates(datesOfPublicationWithOccurrences);
     }
     private static List<List<Object>> createListOfAllBooks(
             List<List<Object>> listOfPhysicalBooks, List<List<Object>> listOfAudioBooks
