@@ -21,6 +21,10 @@ public class AudioBook extends Ebook {
         return listOfAllBooks;
     }
 
+    public static List<Object> getHistoryOfBorrows() {
+        return historyOfBorrows;
+    }
+
     public static List<Object> searchBookBy(String titleOrAuthor) {
         List<Object> booksFilteredByTitleOrAuthor = new ArrayList<>();
         for (List<Object> book: listOfAllBooks) {
