@@ -59,3 +59,16 @@ often occurs in books in the library (from both physical books and audiobooks) (
 - <b>getListOfAllBooks()</b> - Static method, which returns <b>listOfAllBooks</b> list (List).
 - <b>searchBookBy(String arg)</b> - Static method, which returns list of books filtered by title or author (List).
 - <b>searchBookBy(int arg)</b> - Static method, which returns list of books filtered by publication date (List).
+
+# Plans
+- Update this readme.
+- New statistics incluging:
+  - Most popular authors in all books.
+  - Most popular authors in physical books.
+  - Most popular authors in audio books.
+  - Most popular publication dates in all books.
+  - Most popular publication dates in physical books.
+  - Most popular publication dates in audio books.
+  - Borrowers, who borrowed largest number of all books.
+  - Borrowers, who borrowed largest number of physical books.
+  - Borrowers, who borrowed largest number of audio books.
