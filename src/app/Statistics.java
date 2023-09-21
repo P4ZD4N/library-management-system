@@ -74,9 +74,9 @@ public class Statistics {
     private static List<String> createListOfMostPopularAuthors(Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary) {
         List<String> mostPopularAuthors = new ArrayList<>();
         for (String author: authorsAndNumberOfTheirBooksInLibrary.keySet()) {
-            if (authorsAndNumberOfTheirBooksInLibrary.get(author) == Collections.max(
+            if (authorsAndNumberOfTheirBooksInLibrary.get(author).equals(Collections.max(
                     authorsAndNumberOfTheirBooksInLibrary.values()
-            )) {
+            ))) {
                 mostPopularAuthors.add(author);
             }
         }
@@ -102,9 +102,9 @@ public class Statistics {
     ) {
         List<Integer> mostPopularPublicationDates = new ArrayList<>();
         for (Integer publicationDate: datesOfPublicationAndNumberOfOccurrences.keySet()) {
-            if (datesOfPublicationAndNumberOfOccurrences.get(publicationDate) == Collections.max(
+            if (datesOfPublicationAndNumberOfOccurrences.get(publicationDate).equals(Collections.max(
                     datesOfPublicationAndNumberOfOccurrences.values()
-            )) {
+            ))) {
                 mostPopularPublicationDates.add(publicationDate);
             }
         }
