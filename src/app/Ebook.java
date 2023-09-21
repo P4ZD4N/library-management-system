@@ -47,7 +47,7 @@ abstract class Ebook implements MediaItem {
 
     @Override
     public void borrowBook(Borrower borrower) {
-        if (availability == true) {
+        if (availability) {
             System.out.println("Book borrowed");
             availability = false;
             listOfAvailableBooks.remove(bookData);
@@ -80,7 +80,7 @@ abstract class Ebook implements MediaItem {
                             )
                     )
             ) {
-                if (availability == false) {
+                if (!availability) {
                     System.out.println("Book returned");
                     availability = true;
                     listOfBorrowedBooks.remove(List.of(bookData, createBorrowerDataList(borrower)));
