@@ -27,21 +27,21 @@ public class AudioBook extends Ebook {
 
     public static List<Object> searchBookBy(String titleOrAuthor) {
         List<Object> booksFilteredByTitleOrAuthor = new ArrayList<>();
-        for (List<Object> book: listOfAllBooks) {
+        listOfAllBooks.stream().forEach(book -> {
             if (book.contains(titleOrAuthor)) {
                 booksFilteredByTitleOrAuthor.add(book);
             }
-        }
+        });
         return booksFilteredByTitleOrAuthor;
     }
 
     public static List<Object> searchBookBy(int publicationDate) {
         List<Object> booksFilteredByPublicationDate = new ArrayList<>();
-        for (List<Object> book: listOfAllBooks) {
+        listOfAllBooks.stream().forEach(book -> {
             if (book.contains(publicationDate)) {
                 booksFilteredByPublicationDate.add(book);
             }
-        }
+        });
         return booksFilteredByPublicationDate;
     }
 }
