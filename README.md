@@ -68,12 +68,12 @@ argument.
 enter as an argument.
 - <b>createListOfAllBooks()</b> - Private static method, which returns list combined of two lists entered as an
 arguments.
-- <b>createMapOfAuthorsAndNumberOfTheirBooksInLibrary</b> - Private static method, which returns map with strings (authors) as keys
+- <b>createMapOfAuthorsAndNumberOfTheirBooksInLibrary()</b> - Private static method, which returns map with strings (authors) as keys
 and integers (number of books of author) as values.
 - <b>createListOfAuthorsWithMostBooks()</b> - Private static method, which returns list of authors with most books.
-- <b>createMapOfDatesOfPublicationAndNumberOfOccurrences</b> - Private static method, which returns map with integers 
+- <b>createMapOfDatesOfPublicationAndNumberOfOccurrences()</b> - Private static method, which returns map with integers 
 (publication dates) as keys and integers (number of books with this publication date) as values.
-- <b>createListOfPublicationDatesMostAppearsInBooks</b> - Private static method, which returns list of publication dates 
+- <b>createListOfPublicationDatesMostAppearsInBooks()</b> - Private static method, which returns list of publication dates 
 which occurs the most in books.
 
 ### Book abstract class and Ebook abstract class
