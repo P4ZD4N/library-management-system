@@ -6,8 +6,13 @@ import java.util.stream.Collectors;
 public class Statistics {
     private static List<List<Object>> listOfPhysicalBooks = PhysicalBook.getListOfAllBooks();
     private static List<List<Object>> listOfAudioBooks = AudioBook.getListOfAllBooks();
-    private static List<List<Object>> listOfAllBooksBothPhysicalAndAudio = createListOfAllBooks(
+    private static List<List<Object>> listOfAllBooksBothPhysicalAndAudio = combineTwoLists(
             listOfPhysicalBooks, listOfAudioBooks
+    );
+    private static List<Object> historyOfBorrowsPhysicalBooks = PhysicalBook.getHistoryOfBorrows();
+    private static List<Object> historyOfBorrowsAudioBooks = AudioBook.getHistoryOfBorrows();
+    private static List<List<Object>> historyOfBorrowsAllBooks = combineTwoLists(
+            historyOfBorrowsPhysicalBooks, historyOfBorrowsAudioBooks
     );
 
     public static List<String> getAuthorsWithMostAllBooks() {
@@ -48,13 +53,13 @@ public class Statistics {
         );
         return createListOfPublicationDatesMostAppearsInBooks(datesOfPublicationWithOccurrences);
     }
-    private static List<List<Object>> createListOfAllBooks(
-            List<List<Object>> listOfPhysicalBooks, List<List<Object>> listOfAudioBooks
+    private static <FirstList, SecondList> List<List<Object>> combineTwoLists(
+            FirstList firstList, SecondList secondList
     ) {
-        List<List<Object>> listOfAllBooksBothPhysicalAndAudio = new ArrayList<>();
-        listOfAllBooksBothPhysicalAndAudio.addAll(listOfPhysicalBooks);
-        listOfAllBooksBothPhysicalAndAudio.addAll(listOfAudioBooks);
-        return listOfAllBooksBothPhysicalAndAudio;
+        List<List<Object>> combinedList = new ArrayList<>();
+        combinedList.addAll((Collection<? extends List<Object>>) firstList);
+        combinedList.addAll((Collection<? extends List<Object>>) secondList);
+        return combinedList;
     }
     private static Map<String, Integer> createMapOfAuthorsAndNumberOfTheirBooksInLibrary(
             List<List<Object>> listOfBooks, Set<String> listOfAuthors
