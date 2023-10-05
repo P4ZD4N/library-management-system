@@ -9,8 +9,8 @@ public class Statistics {
     private static List<List<Object>> listOfAllBooksBothPhysicalAndAudio = combineTwoLists(
             listOfPhysicalBooks, listOfAudioBooks
     );
-    private static List<Object> historyOfBorrowsPhysicalBooks = PhysicalBook.getHistoryOfBorrows();
-    private static List<Object> historyOfBorrowsAudioBooks = AudioBook.getHistoryOfBorrows();
+    private static List<List<Object>> historyOfBorrowsPhysicalBooks = PhysicalBook.getHistoryOfBorrows();
+    private static List<List<Object>> historyOfBorrowsAudioBooks = AudioBook.getHistoryOfBorrows();
     private static List<List<Object>> historyOfBorrowsAllBooks = combineTwoLists(
             historyOfBorrowsPhysicalBooks, historyOfBorrowsAudioBooks
     );
@@ -33,6 +33,15 @@ public class Statistics {
     public static List<Integer> getPublicationDatesMostAppearsAudioBooks() {
         return getListOfElementsWithMostOccurrences(listOfAudioBooks, 2);
     }
+    public static List<String> getMostPopularAuthorsAllBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAllBooks, 1);
+    }
+    public static List<String> getMostPopularAuthorsPhysicalBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsPhysicalBooks, 1);
+    }
+    public static List<String> getMostPopularAuthorsAudioBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAudioBooks, 1);
+    }
 
     private static <T> List<List<Object>> combineTwoLists(T firstList, T secondList) {
         List<List<Object>> combinedList = new ArrayList<>();
@@ -50,6 +59,16 @@ public class Statistics {
         );
         return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
     }
+    private static <T> List<T> getListOfElementsWithMostOccurrencesForListsOfHistory(List<List<Object>> listOfBooks, int index) {
+        Set<T> uniqueElements = listOfBooks
+                .stream()
+                .map(book -> ((List<T>)book.get(0)).get(index))
+                .collect(Collectors.toSet());
+        Map<T, Integer> elementsWithOccurrences = createMapOfElementsAndNumberOfItsOccurrencesForListsOfHistory(
+                listOfBooks, uniqueElements
+        );
+        return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
+    }
     private static <T> Map<T, Integer> createMapOfElementsAndNumberOfItsOccurrences(
             List<List<Object>> listOfBooks, Set<T> set
     ) {
@@ -63,6 +82,20 @@ public class Statistics {
             elementsAndNumberOfItsOccurrences.put(elementOfSet, occurrences.intValue());
         }
         return elementsAndNumberOfItsOccurrences;
+    }
+    private static <T> Map<T, Integer> createMapOfElementsAndNumberOfItsOccurrencesForListsOfHistory(
+            List<List<Object>> listOfBooks, Set<T> set
+    ) {
+        Map<T, Integer> elementsWithOccurrences = new HashMap<>();
+        for (T elementOfSet: set) {
+            Long occurrences = new Long(listOfBooks
+                    .stream()
+                    .filter(book -> ((List<T>) book.get(0)).contains(elementOfSet))
+                    .count()
+            );
+            elementsWithOccurrences.put(elementOfSet, occurrences.intValue());
+        }
+        return elementsWithOccurrences;
     }
     private static <T> List<T> createListOfElementsWithMostOccurrences(
             Map<T, Integer> elementsAndNumberOfItsOccurrences
