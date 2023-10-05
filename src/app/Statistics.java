@@ -42,6 +42,15 @@ public class Statistics {
     public static List<String> getMostPopularAuthorsAudioBooks() {
         return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAudioBooks, 1);
     }
+    public static List<String> getMostPopularPublicationDatesAllBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAllBooks, 2);
+    }
+    public static List<String> getMostPopularPublicationDatesPhysicalBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsPhysicalBooks, 2);
+    }
+    public static List<String> getMostPopularPublicationDatesAudioBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAudioBooks, 2);
+    }
 
     private static <T> List<List<Object>> combineTwoLists(T firstList, T secondList) {
         List<List<Object>> combinedList = new ArrayList<>();
@@ -59,7 +68,9 @@ public class Statistics {
         );
         return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
     }
-    private static <T> List<T> getListOfElementsWithMostOccurrencesForListsOfHistory(List<List<Object>> listOfBooks, int index) {
+    private static <T> List<T> getListOfElementsWithMostOccurrencesForListsOfHistory(
+            List<List<Object>> listOfBooks, int index
+    ) {
         Set<T> uniqueElements = listOfBooks
                 .stream()
                 .map(book -> ((List<T>)book.get(0)).get(index))
