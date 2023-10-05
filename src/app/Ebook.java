@@ -12,7 +12,7 @@ abstract class Ebook implements MediaItem {
     protected static List<List<Object>> listOfAllBooks = new ArrayList<>();
     protected static List<Object> listOfAvailableBooks = new ArrayList<>();
     protected static List<Object> listOfBorrowedBooks = new ArrayList<>();
-    protected static List<Object> historyOfBorrows = new ArrayList<>();
+    protected static List<List<Object>> historyOfBorrows = new ArrayList<>();
 
     protected Ebook(String title, String author, int publicationDate) {
         this.title = title;
