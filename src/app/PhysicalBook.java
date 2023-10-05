@@ -21,7 +21,7 @@ public class PhysicalBook extends Book {
         return  listOfAllBooks;
     }
 
-    public static List<Object> getHistoryOfBorrows() {
+    public static List<List<Object>> getHistoryOfBorrows() {
         return historyOfBorrows;
     }
 

@@ -21,7 +21,7 @@ public class AudioBook extends Ebook {
         return listOfAllBooks;
     }
 
-    public static List<Object> getHistoryOfBorrows() {
+    public static List<List<Object>> getHistoryOfBorrows() {
         return historyOfBorrows;
     }
 
