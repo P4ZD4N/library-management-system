@@ -16,103 +16,66 @@ public class Statistics {
     );
 
     public static List<String> getAuthorsWithMostAllBooks() {
-        return createListContainingAuthorsWithMostBooks(listOfAllBooksBothPhysicalAndAudio);
+        return getListOfElementsWithMostOccurrences(listOfAllBooksBothPhysicalAndAudio, 1);
     }
     public static List<String> getAuthorsWithMostPhysicalBooks() {
-        return createListContainingAuthorsWithMostBooks(listOfPhysicalBooks);
+        return getListOfElementsWithMostOccurrences(listOfPhysicalBooks, 1);
     }
     public static List<String> getAuthorsWithMostAudioBooks() {
-        return createListContainingAuthorsWithMostBooks(listOfAudioBooks);
+        return getListOfElementsWithMostOccurrences(listOfAudioBooks, 1);
     }
     public static List<Integer> getPublicationDatesMostAppearsAllBooks() {
-        return createListContainingPublicationDatesMostAppearsInBooks(listOfAllBooksBothPhysicalAndAudio);
+        return getListOfElementsWithMostOccurrences(listOfAllBooksBothPhysicalAndAudio, 2);
     }
     public static List<Integer> getPublicationDatesMostAppearsPhysicalBooks() {
-        return createListContainingPublicationDatesMostAppearsInBooks(listOfPhysicalBooks);
+        return getListOfElementsWithMostOccurrences(listOfPhysicalBooks, 2);
     }
     public static List<Integer> getPublicationDatesMostAppearsAudioBooks() {
-        return createListContainingPublicationDatesMostAppearsInBooks(listOfAudioBooks);
+        return getListOfElementsWithMostOccurrences(listOfAudioBooks, 2);
     }
-    private static List<String> createListContainingAuthorsWithMostBooks(List<List<Object>> listOfBooks) {
-        Set<String> authors = listOfBooks
-                .stream()
-                .map(bookProperties -> Objects.toString(bookProperties.get(1)))
-                .collect(Collectors.toSet());
-        Map<String, Integer> authorsWithOccurrences = createMapOfAuthorsAndNumberOfTheirBooksInLibrary(
-                listOfBooks, authors
-        );
-        return createListOfAuthorsWithMostBooks(authorsWithOccurrences);
-    }
-    private static List<Integer> createListContainingPublicationDatesMostAppearsInBooks(List<List<Object>> listOfBooks) {
-        Set<Integer> publicationDates = listOfBooks
-                .stream()
-                .map(bookProperties -> Integer.parseInt(Objects.toString(bookProperties.get(2))))
-                .collect(Collectors.toSet());
-        Map<Integer, Integer> datesOfPublicationWithOccurrences = createMapOfDatesOfPublicationAndNumberOfOccurrences(
-                listOfBooks, publicationDates
-        );
-        return createListOfPublicationDatesMostAppearsInBooks(datesOfPublicationWithOccurrences);
-    }
-    private static <FirstList, SecondList> List<List<Object>> combineTwoLists(
-            FirstList firstList, SecondList secondList
-    ) {
+
+    private static <T> List<List<Object>> combineTwoLists(T firstList, T secondList) {
         List<List<Object>> combinedList = new ArrayList<>();
         combinedList.addAll((Collection<? extends List<Object>>) firstList);
         combinedList.addAll((Collection<? extends List<Object>>) secondList);
         return combinedList;
     }
-    private static Map<String, Integer> createMapOfAuthorsAndNumberOfTheirBooksInLibrary(
-            List<List<Object>> listOfBooks, Set<String> listOfAuthors
+    private static <T> List<T> getListOfElementsWithMostOccurrences(List<List<Object>> listOfBooks, int index) {
+        Set<T> uniqueElements = listOfBooks
+                .stream()
+                .map(bookProperties -> (T) bookProperties.get(index))
+                .collect(Collectors.toSet());
+        Map<T, Integer> elementsWithOccurrences = createMapOfElementsAndNumberOfItsOccurrences(
+                listOfBooks, uniqueElements
+        );
+        return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
+    }
+    private static <T> Map<T, Integer> createMapOfElementsAndNumberOfItsOccurrences(
+            List<List<Object>> listOfBooks, Set<T> set
     ) {
-        Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary = new HashMap<>();
-        for (String author: listOfAuthors) {
-            int booksOfThisAuthor = 0;
+        Map<T, Integer> elementsAndNumberOfItsOccurrences = new HashMap<>();
+        for (T elementOfSet: set) {
+            int occurrences = 0;
             for (List<Object> list: listOfBooks) {
-                if (list.contains(author)) {
-                    booksOfThisAuthor++;
+                if (list.contains(elementOfSet)) {
+                    occurrences++;
                 }
             }
-            authorsAndNumberOfTheirBooksInLibrary.put(author, booksOfThisAuthor);
+            elementsAndNumberOfItsOccurrences.put(elementOfSet, occurrences);
         }
-        return authorsAndNumberOfTheirBooksInLibrary;
+        return elementsAndNumberOfItsOccurrences;
     }
-    private static List<String> createListOfAuthorsWithMostBooks(Map<String, Integer> authorsAndNumberOfTheirBooksInLibrary) {
-        List<String> authorsWithMostBooks = new ArrayList<>();
-        for (String author: authorsAndNumberOfTheirBooksInLibrary.keySet()) {
-            if (authorsAndNumberOfTheirBooksInLibrary.get(author).equals(Collections.max(
-                    authorsAndNumberOfTheirBooksInLibrary.values()
-            ))) {
-                authorsWithMostBooks.add(author);
-            }
-        }
-        return authorsWithMostBooks;
-    }
-    private static Map<Integer, Integer> createMapOfDatesOfPublicationAndNumberOfOccurrences(
-            List<List<Object>> listOfBooks, Set<Integer> publicationDates
+    private static <T> List<T> createListOfElementsWithMostOccurrences(
+            Map<T, Integer> elementsAndNumberOfItsOccurrences
     ) {
-        Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences = new HashMap<>();
-        for (Integer publicationDate: publicationDates) {
-            int booksWithThisPublicationDate = 0;
-            for (List<Object> list: listOfBooks) {
-                if (list.contains(publicationDate)) {
-                    booksWithThisPublicationDate++;
-                }
-            }
-            datesOfPublicationAndNumberOfOccurrences.put(publicationDate, booksWithThisPublicationDate);
-        }
-        return datesOfPublicationAndNumberOfOccurrences;
-    }
-    private static List<Integer> createListOfPublicationDatesMostAppearsInBooks(
-            Map<Integer, Integer> datesOfPublicationAndNumberOfOccurrences
-    ) {
-        List<Integer> publicationDatesMostAppearsInBooks = new ArrayList<>();
-        for (Integer publicationDate: datesOfPublicationAndNumberOfOccurrences.keySet()) {
-            if (datesOfPublicationAndNumberOfOccurrences.get(publicationDate).equals(Collections.max(
-                    datesOfPublicationAndNumberOfOccurrences.values()
+        List<T> elementsWithMostOccurrences = new ArrayList<>();
+        for (T element: elementsAndNumberOfItsOccurrences.keySet()) {
+            if (elementsAndNumberOfItsOccurrences.get(element).equals(Collections.max(
+                    elementsAndNumberOfItsOccurrences.values()
             ))) {
-                publicationDatesMostAppearsInBooks.add(publicationDate);
+                elementsWithMostOccurrences.add(element);
             }
         }
-        return publicationDatesMostAppearsInBooks;
+        return elementsWithMostOccurrences;
     }
 }
