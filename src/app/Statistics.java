@@ -55,13 +55,12 @@ public class Statistics {
     ) {
         Map<T, Integer> elementsAndNumberOfItsOccurrences = new HashMap<>();
         for (T elementOfSet: set) {
-            int occurrences = 0;
-            for (List<Object> list: listOfBooks) {
-                if (list.contains(elementOfSet)) {
-                    occurrences++;
-                }
-            }
-            elementsAndNumberOfItsOccurrences.put(elementOfSet, occurrences);
+            Long occurrences = new Long(listOfBooks
+                    .stream()
+                    .filter(list -> list.contains(elementOfSet))
+                    .count()
+            );
+            elementsAndNumberOfItsOccurrences.put(elementOfSet, occurrences.intValue());
         }
         return elementsAndNumberOfItsOccurrences;
     }
