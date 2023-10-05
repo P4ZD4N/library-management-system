@@ -2,6 +2,7 @@ package app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AudioBook extends Ebook {
     public AudioBook(String title, String author, int publicationDate) {
@@ -26,22 +27,18 @@ public class AudioBook extends Ebook {
     }
 
     public static List<Object> searchBookBy(String titleOrAuthor) {
-        List<Object> booksFilteredByTitleOrAuthor = new ArrayList<>();
-        listOfAllBooks.stream().forEach(book -> {
-            if (book.contains(titleOrAuthor)) {
-                booksFilteredByTitleOrAuthor.add(book);
-            }
-        });
+        List<Object> booksFilteredByTitleOrAuthor = listOfAllBooks
+                .stream()
+                .filter(book -> book.contains(titleOrAuthor))
+                .collect(Collectors.toList());
         return booksFilteredByTitleOrAuthor;
     }
 
     public static List<Object> searchBookBy(int publicationDate) {
-        List<Object> booksFilteredByPublicationDate = new ArrayList<>();
-        listOfAllBooks.stream().forEach(book -> {
-            if (book.contains(publicationDate)) {
-                booksFilteredByPublicationDate.add(book);
-            }
-        });
+        List<Object> booksFilteredByPublicationDate = listOfAllBooks
+                .stream()
+                .filter(book -> book.contains(publicationDate))
+                .collect(Collectors.toList());
         return booksFilteredByPublicationDate;
     }
 }
