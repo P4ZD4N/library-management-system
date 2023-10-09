@@ -34,47 +34,47 @@ public class Statistics {
         return getListOfElementsWithMostOccurrences(listOfAudioBooks, 2);
     }
     public static List<String> getMostPopularAuthorsAllBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAllBooks, 0, 1
         );
     }
     public static List<String> getMostPopularAuthorsPhysicalBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsPhysicalBooks, 0, 1
         );
     }
     public static List<String> getMostPopularAuthorsAudioBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAudioBooks, 0, 1
         );
     }
     public static List<String> getMostPopularPublicationDatesAllBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAllBooks, 0, 2
         );
     }
     public static List<String> getMostPopularPublicationDatesPhysicalBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsPhysicalBooks, 0, 2
         );
     }
     public static List<String> getMostPopularPublicationDatesAudioBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAudioBooks, 0, 2
         );
     }
     public static List<String> getBorrowerWhoBorrowedLargestNumberOfAllBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAllBooks, 1, 1
         );
     }
     public static List<String> getBorrowerWhoBorrowedLargestNumberOfPhysicalBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsPhysicalBooks, 1, 1
         );
     }
     public static List<String> getBorrowerWhoBorrowedLargestNumberOfAudioBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+        return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAudioBooks, 1, 1
         );
     }
@@ -95,14 +95,14 @@ public class Statistics {
         );
         return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
     }
-    private static <T> List<T> getListOfElementsWithMostOccurrencesForListsOfHistory(
+    private static <T> List<T> getListOfElementsWithMostOccurrences(
             List<List<Object>> historyOfBorrows, int detailsOfBookOrBorrower, int detail
     ) {
         Set<T> uniqueElements = historyOfBorrows
                 .stream()
                 .map(bookAndBorrowerDetails -> ((List<T>)bookAndBorrowerDetails.get(detailsOfBookOrBorrower)).get(detail))
                 .collect(Collectors.toSet());
-        Map<T, Integer> elementsWithOccurrences = createMapOfElementsAndNumberOfItsOccurrencesForListsOfHistory(
+        Map<T, Integer> elementsWithOccurrences = createMapOfElementsAndNumberOfItsOccurrences(
                 historyOfBorrows, detailsOfBookOrBorrower, uniqueElements
         );
         return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
@@ -121,7 +121,7 @@ public class Statistics {
         }
         return elementsAndNumberOfItsOccurrences;
     }
-    private static <T> Map<T, Integer> createMapOfElementsAndNumberOfItsOccurrencesForListsOfHistory(
+    private static <T> Map<T, Integer> createMapOfElementsAndNumberOfItsOccurrences(
             List<List<Object>> historyOfBorrows, int detailsOfBookOrBorrower, Set<T> set
     ) {
         Map<T, Integer> elementsWithOccurrences = new HashMap<>();
