@@ -1,5 +1,6 @@
 package app;
 
+import exceptions.NotBorrowedBookException;
 import exceptions.UnavailableBookException;
 
 import java.util.ArrayList;
@@ -89,12 +90,12 @@ abstract class Ebook implements MediaItem {
                     availability = true;
                     listOfBorrowedBooks.remove(List.of(bookData, createBorrowerDataList(borrower)));
                     listOfAvailableBooks.add(bookData);
-                } else {
-                    System.out.println("Book is actually not borrowed, so you can't return it");
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("This borrower didn't borrowed that book");
+            throw new NotBorrowedBookException(
+                    "Hello " + borrower.getFirstName() + "! You didn't borrowed that book!"
+            );
         }
     }
 
