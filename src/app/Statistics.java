@@ -33,6 +33,21 @@ public class Statistics {
     public static List<Integer> getPublicationDatesMostAppearsAudioBooks() {
         return getListOfElementsWithMostOccurrences(listOfAudioBooks, 2);
     }
+    public static List<String> getMostPopularBooks() {
+        return getListOfElementsWithMostOccurrences(
+                historyOfBorrowsAllBooks, 0, 0
+        );
+    }
+    public static List<String> getMostPopularPhysicalBooks() {
+        return getListOfElementsWithMostOccurrences(
+                historyOfBorrowsPhysicalBooks, 0, 0
+        );
+    }
+    public static List<String> getMostPopularAudioBooks() {
+        return getListOfElementsWithMostOccurrences(
+                historyOfBorrowsAudioBooks, 0, 0
+        );
+    }
     public static List<String> getMostPopularAuthorsAllBooks() {
         return getListOfElementsWithMostOccurrences(
                 historyOfBorrowsAllBooks, 0, 1
@@ -79,10 +94,10 @@ public class Statistics {
         );
     }
 
-    private static <T> List<T> getListOfElementsWithMostOccurrences(List<List<Object>> listOfBooks, int index) {
+    private static <T> List<T> getListOfElementsWithMostOccurrences(List<List<Object>> listOfBooks, int detail) {
         Set<T> uniqueElements = listOfBooks
                 .stream()
-                .map(bookProperties -> (T) bookProperties.get(index))
+                .map(bookProperties -> (T) bookProperties.get(detail))
                 .collect(Collectors.toSet());
         Map<T, Integer> elementsWithOccurrences = createMapOfElementsAndNumberOfItsOccurrences(
                 listOfBooks, uniqueElements
