@@ -1,5 +1,7 @@
 package app;
 
+import exceptions.UnavailableBookException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +66,9 @@ abstract class Book implements MediaItem {
                     )
             );
         } else {
-            System.out.println("Book is actually unavailable");
+            throw new UnavailableBookException(
+                    "Hello " + borrower.getFirstName() + "! Book is actually unavailable!"
+            );
         }
     }
 
