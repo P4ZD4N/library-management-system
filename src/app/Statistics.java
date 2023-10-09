@@ -34,22 +34,49 @@ public class Statistics {
         return getListOfElementsWithMostOccurrences(listOfAudioBooks, 2);
     }
     public static List<String> getMostPopularAuthorsAllBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAllBooks, 1);
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsAllBooks, 0, 1
+        );
     }
     public static List<String> getMostPopularAuthorsPhysicalBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsPhysicalBooks, 1);
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsPhysicalBooks, 0, 1
+        );
     }
     public static List<String> getMostPopularAuthorsAudioBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAudioBooks, 1);
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsAudioBooks, 0, 1
+        );
     }
     public static List<String> getMostPopularPublicationDatesAllBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAllBooks, 2);
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsAllBooks, 0, 2
+        );
     }
     public static List<String> getMostPopularPublicationDatesPhysicalBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsPhysicalBooks, 2);
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsPhysicalBooks, 0, 2
+        );
     }
     public static List<String> getMostPopularPublicationDatesAudioBooks() {
-        return getListOfElementsWithMostOccurrencesForListsOfHistory(historyOfBorrowsAudioBooks, 2);
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsAudioBooks, 0, 2
+        );
+    }
+    public static List<String> getBorrowerWhoBorrowedLargestNumberOfAllBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsAllBooks, 1, 1
+        );
+    }
+    public static List<String> getBorrowerWhoBorrowedLargestNumberOfPhysicalBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsPhysicalBooks, 1, 1
+        );
+    }
+    public static List<String> getBorrowerWhoBorrowedLargestNumberOfAudioBooks() {
+        return getListOfElementsWithMostOccurrencesForListsOfHistory(
+                historyOfBorrowsAudioBooks, 1, 1
+        );
     }
 
     private static <T> List<List<Object>> combineTwoLists(T firstList, T secondList) {
@@ -69,14 +96,14 @@ public class Statistics {
         return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
     }
     private static <T> List<T> getListOfElementsWithMostOccurrencesForListsOfHistory(
-            List<List<Object>> listOfBooks, int index
+            List<List<Object>> historyOfBorrows, int detailsOfBookOrBorrower, int detail
     ) {
-        Set<T> uniqueElements = listOfBooks
+        Set<T> uniqueElements = historyOfBorrows
                 .stream()
-                .map(book -> ((List<T>)book.get(0)).get(index))
+                .map(bookAndBorrowerDetails -> ((List<T>)bookAndBorrowerDetails.get(detailsOfBookOrBorrower)).get(detail))
                 .collect(Collectors.toSet());
         Map<T, Integer> elementsWithOccurrences = createMapOfElementsAndNumberOfItsOccurrencesForListsOfHistory(
-                listOfBooks, uniqueElements
+                historyOfBorrows, detailsOfBookOrBorrower, uniqueElements
         );
         return createListOfElementsWithMostOccurrences(elementsWithOccurrences);
     }
@@ -95,13 +122,13 @@ public class Statistics {
         return elementsAndNumberOfItsOccurrences;
     }
     private static <T> Map<T, Integer> createMapOfElementsAndNumberOfItsOccurrencesForListsOfHistory(
-            List<List<Object>> listOfBooks, Set<T> set
+            List<List<Object>> historyOfBorrows, int detailsOfBookOrBorrower, Set<T> set
     ) {
         Map<T, Integer> elementsWithOccurrences = new HashMap<>();
         for (T elementOfSet: set) {
-            Long occurrences = new Long(listOfBooks
+            Long occurrences = new Long(historyOfBorrows
                     .stream()
-                    .filter(book -> ((List<T>) book.get(0)).contains(elementOfSet))
+                    .filter(bookAndBorrowerDetails -> ((List<T>) bookAndBorrowerDetails.get(detailsOfBookOrBorrower)).contains(elementOfSet))
                     .count()
             );
             elementsWithOccurrences.put(elementOfSet, occurrences.intValue());
