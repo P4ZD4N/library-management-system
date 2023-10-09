@@ -79,12 +79,6 @@ public class Statistics {
         );
     }
 
-    private static <T> List<List<Object>> combineTwoLists(T firstList, T secondList) {
-        List<List<Object>> combinedList = new ArrayList<>();
-        combinedList.addAll((Collection<? extends List<Object>>) firstList);
-        combinedList.addAll((Collection<? extends List<Object>>) secondList);
-        return combinedList;
-    }
     private static <T> List<T> getListOfElementsWithMostOccurrences(List<List<Object>> listOfBooks, int index) {
         Set<T> uniqueElements = listOfBooks
                 .stream()
@@ -147,5 +141,11 @@ public class Statistics {
             }
         }
         return elementsWithMostOccurrences;
+    }
+    private static <T> List<List<Object>> combineTwoLists(T firstList, T secondList) {
+        List<List<Object>> combinedList = new ArrayList<>();
+        combinedList.addAll((Collection<? extends List<Object>>) firstList);
+        combinedList.addAll((Collection<? extends List<Object>>) secondList);
+        return combinedList;
     }
 }
