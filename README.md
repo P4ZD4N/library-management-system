@@ -103,7 +103,7 @@ Library management system app was supposed to be a project, that allow me to pra
 - <b>searchBookBy(String arg)</b> - Static method, which returns list of books filtered by title or author (List).
 - <b>searchBookBy(int arg)</b> - Static method, which returns list of books filtered by publication date (List).
 
-# Custom eceptions
+# Custom exceptions
 - <b>NotBorrowedBookException</b> - Custom runtime exception, which must be thrown, when borrower would like to return book, which he didn't borrowed.
 - <b>UnavailableBookException</b> - Custom runtime exception, which must be thrown, when borrower would like to borrow book, which he is actually unavailable.
 
